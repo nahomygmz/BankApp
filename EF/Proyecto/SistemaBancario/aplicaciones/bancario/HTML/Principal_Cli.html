@@ -1,0 +1,495 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<link href="{% static 'images/favicon.png' %}" rel="icon" />
+<title>BankApp</title>
+<meta name="description" content="This professional design html template is for build a Money Transfer and online payments website.">
+<meta name="author" content="harnishdesign.net">
+
+<!-- Web Fonts
+============================================= -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i' type='text/css'>
+
+<!-- Stylesheet
+============================================= -->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/all.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div data-loader="dual-ring"></div>
+</div>
+<!-- Preloader End --> 
+
+<!-- Document Wrapper
+============================================= -->
+<div id="main-wrapper">
+
+  <!-- Header
+  ============================================= -->
+  <header id="header">
+    <div class="container">
+      <div class="header-row">
+        <div class="header-column justify-content-start"> 
+          <!-- Logo
+          ============================= -->
+          <div class="logo"> <a class="d-flex" href="index.html" title="Payyed - HTML Template"><img src="{% static 'images/LOGOOK.png' %}" width="150"  height="122" alt="BankApp"" /></a> </div>
+          <!-- Logo end --> 
+          <!-- Collapse Button
+          ============================== -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav"> <span></span> <span></span> <span></span> </button>
+          <!-- Collapse Button end --> 
+          
+          <!-- Primary Navigation
+          ============================== -->
+          <nav class="primary-menu navbar navbar-expand-lg">
+            <div id="header-nav" class="collapse navbar-collapse">
+              <ul class="navbar-nav mr-auto">
+               
+                <li><a href="transactions_Cli.html">Transacciones</a></li>
+                <li><a href="send-money_Cli.html">Realizar una transacción</a></li>
+                <li><a href="help_Cli.html">Ayuda</a></li>
+                </ul>
+     
+            </div>
+          </nav>
+          <!-- Primary Navigation end --> 
+        </div>
+        <div class="header-column justify-content-end"> 
+          <!-- Login & Signup Link
+          ============================== -->
+          
+          <nav class="login-signup navbar navbar-expand">
+            <ul class="navbar-nav">
+              <li><a href="#desea-Eliminar" data-toggle="modal" class="float-right text-1 text-uppercase text-muted btn-link">Eliminar Mi Cuenta</a> </li>
+              <li class="align-items-center h-auto ml-sm-3"><a class="btn btn-outline-primary shadow-none d-none d-sm-block" href="CerrarSesion/">Cerrar Sesión</a></li>
+             
+            </ul>
+          </nav> 
+         
+          <!-- Login & Signup Link end --> 
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header End --> 
+  
+  <!-- Secondary Menu
+  ============================================= -->
+  <div class="bg-primary">
+    <div class="container d-flex justify-content-center">
+      <ul class="nav secondary-nav">
+        <li class="nav-item"> <a class="nav-link active" href="Principal_Cli.html">Perfil</a></li>
+    </ul>
+    </div>
+  </div>
+  <!-- Secondary Menu end --> 
+  
+  <!-- Content
+  ============================================= -->
+  <div id="content" class="py-4">
+    <div class="container">
+      <div class="row"> 
+        
+        <!-- Left Panel
+        ============================================= -->
+        <aside class="col-lg-3"> 
+          
+          <!-- Profile Details
+          =============================== -->
+          <div class="bg-light shadow-sm rounded text-center p-3 mb-4">
+            <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" src="{% static 'images/profile-thumb.jpg' %}" alt="">
+              <div class="profile-thumb-edit custom-file bg-primary text-white" data-toggle="tooltip" title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
+                <input type="file" class="custom-file-input" id="customFile">
+              </div>
+            </div>
+            <p class="text-3 font-weight-500 mb-2">Bienvenido {% if request.session.User_Nombre %}
+                                                      {{request.session.User_Nombre}} 
+                                                      {% else %}
+                                                      {% endif %}</p>
+           
+          </div>
+          <!-- Profile Details End -->
+          
+          <!-- Available Balance
+          =============================== -->
+          <div class="bg-light shadow-sm rounded text-center p-3 mb-4">
+            <div class="text-17 text-light my-3"><i class="fas fa-wallet"></i></div>
+            <h3 class="text-9 font-weight-400">RD$ {% for Cuentas in CU_SALDO %}
+                                                      {{Cuentas.CU_SALDO}} 
+                                                   {% endfor %}</h3>
+            <p class="mb-2 text-muted opacity-8">Balance disponible</p>
+            <hr class="mx-n3">
+           </div>
+          <!-- Available Balance End --> 
+          
+         
+          
+        </aside>
+        <!-- Left Panel End --> 
+        
+        <!-- Middle Panel
+        ============================================= -->
+        <div class="col-lg-9">
+          
+          <!-- Personal Details
+          ============================================= -->
+          <div class="bg-light shadow-sm rounded p-4 mb-4">
+            <h3 class="text-5 font-weight-400 mb-3">Datos Personales <a href="#edit-personal-details" data-toggle="modal" class="float-right text-1 text-uppercase text-muted btn-link"><i class="fas fa-edit mr-1"></i>Edit</a></h3>
+
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">	Nombre</p>
+              <p class="col-sm-9">{% if request.session.User_Nombre %}
+                                  {{request.session.User_Nombre}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">	Apellido</p>
+              <p class="col-sm-9">{% if request.session.User_Apellidos %}
+                                  {{request.session.User_Apellidos}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+
+
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">	Cedula</p>
+              <p class="col-sm-9">{% if request.session.User_Cedula %}
+                                  {{request.session.User_Cedula}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">	Dirección</p>
+              <p class="col-sm-9">{% if request.session.User_Direccion %}
+                                  {{request.session.User_Direccion}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+
+          </div>
+          <!-- Edit Details Modal
+          ================================== -->
+          <div id="edit-personal-details" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-400">Datos Personales</h5>
+                  <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body p-4">
+                  <form id="personaldetails" action= "update/" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label for="firstName">Nombre</label>
+                          <input type="text" value="{{request.session.User_Nombre}}" class="form-control" data-bv-field="firstName" name="firstName" required placeholder="First Name">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label for="fullName">Apellido</label>
+                          <input type="text" value="{{request.session.User_Apellidos}}" class="form-control" data-bv-field="fullName" name="fullName" required placeholder="Full Name">
+                        </div>
+                      </div>
+                      <div class="col-12">
+
+                      </div>
+                      <div class="col-12">
+                        <h3 class="text-5 font-weight-400 mt-3">Dirección</h3>
+                        <hr>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="address">Dirección</label>
+                          <input type="text" value="{{request.session.User_Direccion}}" class="form-control" data-bv-field="address" name="address" required placeholder="Address 1">
+                        </div>
+                      </div>
+  
+                    
+                    </div>
+                    <button class="btn btn-primary btn-block mt-2" type="submit">Guardar cambios</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Personal Details End -->
+          
+          <!-- Account Settings
+          ============================================= -->
+         
+          <!-- Edit Details Modal
+          ================================== -->
+          <div id="edit-account-settings" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-400">Configuración de cuenta</h5>
+                  <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body p-4">
+                  <form id="accountSettings" method="post">
+                    <div class="row">
+                     
+                  
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="accountStatus">Estado de cuenta</label>
+                          <select class="custom-select" id="accountStatus" name="language_id">
+                            <option value="1">Activa</option>
+                            <option value="2">Inactiva</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-block mt-2" type="submit">Gruardar Cambios</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Account Settings End -->
+          
+          <!-- Email Addresses
+          ============================================= -->
+          <div class="bg-light shadow-sm rounded p-4 mb-4">
+            <h3 class="text-5 font-weight-400 mb-3">Correo Electrónico <a href="#edit-email" data-toggle="modal" class="float-right text-1 text-uppercase text-muted btn-link"><i class="fas fa-edit mr-1"></i>Edit</a></h3>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Email ID <span class="text-muted font-weight-500">(Primary)</span></p>
+              <p class="col-sm-9">{% if request.session.User_Email %}
+                                  {{request.session.User_Email}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+          </div>
+          <!-- Edit Details Modal
+          ================================== -->
+          <div id="edit-email" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-400">Correo Electrónico</h5>
+                  <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body p-4">
+
+                    <form id="emailAddresses"  action="update1/" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <label for="emailID">Email ID <span class="text-muted font-weight-500">(Primary)</span></label>
+                            <input type="text" value="{{request.session.User_Email}}" class="form-control" data-bv-field="emailid" name="emailID" required placeholder="Email ID">
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-block" type="submit">Guardar Cambios</button>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Email Addresses End -->
+          
+          <!-- Phone
+          ============================================= -->
+          <div class="bg-light shadow-sm rounded p-4 mb-4">
+            <h3 class="text-5 font-weight-400 mb-3">Teléfono<a href="#edit-phone" data-toggle="modal" class="float-right text-1 text-uppercase text-muted btn-link"><i class="fas fa-edit mr-1"></i>Edit</a></h3>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">	Telefono</p>
+              <p class="col-sm-9">{% if request.session.User_Tel %}
+                                  {{request.session.User_Tel}} 
+                                  {% else %}
+                                  {% endif %}</p>
+            </div>
+          </div>
+          <!-- Edit Details Modal
+          ================================== -->
+          <div id="edit-phone" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-400">Celular</h5>
+                  <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body p-4">
+
+                  <form id="phone" action="update2/" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="mobileNumber">Celular <span class="text-muted font-weight-500">(Primary)</span></label>
+                          <input type="text" value="{{request.session.User_Tel}}" class="form-control" data-bv-field="mobilenumber" name="mobileNumber" required placeholder="Mobile Number" maxlength=10>
+                        </div>
+                      </div>
+                    </div>
+                   <button class="btn btn-primary btn-block" type="submit">Guardar Cambios</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Phone End -->
+          
+          <!-- Security
+          ============================================= -->
+          <div class="bg-light shadow-sm rounded p-4">
+            <h3 class="text-5 font-weight-400 mb-3">Seguridad <a href="#change-password" data-toggle="modal" class="float-right text-1 text-uppercase text-muted btn-link"><i class="fas fa-edit mr-1"></i>Edit</a></h3>
+            <div class="row">
+              <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">
+                <label class="col-form-label">Contraseña</label>
+              </p>
+              <p class="col-sm-9">
+                <input type="password" class="form-control-plaintext" data-bv-field="password" id="password" value="EnterPassword" disabled>
+              </p>
+            </div>
+          </div>
+          <!-- Edit Details Modal
+          ================================== -->
+          <div id="change-password" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-400">Cambiar Contraseña</h5>
+                  <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body p-4">
+
+                  <form id="changePassword" action="update3/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="newPassword">Contraseña Nueva</label>
+                      <input type="text" class="form-control" data-bv-field="newpassword" name="newPassword" required placeholder="Enter New Password">
+                    </div>
+                   
+                    <button class="btn btn-primary btn-block mt-4" type="submit">Actualizar contraseña</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Security End -->
+
+
+          <!-- deseaEliminarModal
+            ================================== -->
+            <div id="desea-Eliminar" class="modal fade " role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title font-weight-400">Eliminar Cuenta</h5>
+                    <button type="button" class="close font-weight-400" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  </div>
+                  <div class="modal-body p-4">
+  
+                      <form id="eliminarcuenta"  action="eliminarCuenta/" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="emailID">¿Seguro que desea eliminar su cuenta?<br><span class="text-muted font-weight-500">Este paso no se puede revertir</span></label>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">Eliminar Cuenta</button>
+                      </form>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- deseaEliminar End -->
+          
+            
+        </div>
+        <!-- Middle Panel End --> 
+      </div>
+    </div>
+  </div>
+  <!-- Content end --> 
+  
+  <!-- Footer
+  ============================================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg d-lg-flex align-items-center">
+          <ul class="nav justify-content-center justify-content-lg-start text-3">
+            <li class="nav-item"> <a class="nav-link active" href="#">Acerca de Nosotros</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Soporte</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Ayuda</a></li>
+            
+          </ul>
+        </div>
+        <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
+          <ul class="social-icons justify-content-center">
+            <li class="social-icons-facebook"><a data-toggle="tooltip" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="social-icons-twitter"><a data-toggle="tooltip" href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li class="social-icons-google"><a data-toggle="tooltip" href="http://www.google.com/" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
+            <li class="social-icons-youtube"><a data-toggle="tooltip" href="http://www.youtube.com/" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copyright pt-3 pt-lg-2 mt-2">
+        <div class="row">
+          <div class="col-lg">
+            <p class="text-center text-lg-left mb-2 mb-lg-0">Copyright ; 2022 <a href="#">BankApp</a>. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
+            <ul class="nav justify-content-center">
+              <li class="nav-item"> <a class="nav-link active" href="#">Seguridad</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Terminos</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Privacidad</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer end --> 
+  
+</div>
+<!-- Document Wrapper end --> 
+
+<!-- Back to Top
+============================================= --> 
+<a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+
+<!-- Script --> 
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script> 
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script> 
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script> 
+<script>
+$(function() {
+ 'use strict';
+  // Birth Date
+  $('#birthDate').daterangepicker({
+	singleDatePicker: true,
+	"showDropdowns": true,
+	autoUpdateInput: false,
+	maxDate: moment().add(0, 'days'),
+	}, function(chosen_date) {
+  $('#birthDate').val(chosen_date.format('MM-DD-YYYY'));
+  });
+  });
+</script> 
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>

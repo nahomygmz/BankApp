@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<link href="{% static 'images/favicon.png' %}" rel="icon" />
+<title>BankApp</title>
+<meta name="description" content="This professional design html template is for build a Money Transfer and online payments website.">
+<meta name="author" content="harnishdesign.net">
+
+<!-- Web Fonts
+============================================= -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i' type='text/css'>
+
+<!-- Stylesheet
+============================================= -->
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/all.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div data-loader="dual-ring"></div>
+</div>
+<!-- Preloader End --> 
+
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper"> 
+  
+  <!-- Header
+  ============================================= -->
+  <header id="header">
+    <div class="container">
+      <div class="header-row">
+        <div class="header-column justify-content-start"> 
+          <!-- Logo
+          ============================= -->
+          <div class="logo"> <a class="d-flex" href="index.html" title="Payyed - HTML Template"><img src="{% static 'images/LOGOOK.png' %}" width="150"  height="122" alt="BankApp" /></a> </div>
+          <!-- Logo end --> 
+          <!-- Collapse Button
+          ============================== -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav"> <span></span> <span></span> <span></span> </button>
+          <!-- Collapse Button end --> 
+          
+          <!-- Primary Navigation
+          ============================== -->
+          <nav class="primary-menu navbar navbar-expand-lg">
+            <div id="header-nav" class="collapse navbar-collapse">
+              <ul class="navbar-nav mr-auto">
+                  <li><a href="Principal_Cli.html">Inicio</a></li>
+                <li class="active"><a href="transactions_Cli.html">Transacciones</a></li>
+                <li><a href="send-money_Cli.html">Realizar una Transacción</a></li>
+				
+                <li><a href="help_Cli.html">Ayuda</a></li>
+               
+			</div>
+          </nav>
+          <!-- Primary Navigation end --> 
+        </div>
+        <div class="header-column justify-content-end"> 
+          <!-- Login & Signup Link
+          ============================== -->
+          <nav class="login-signup navbar navbar-expand">
+            <ul class="navbar-nav">
+              <li class="align-items-center h-auto ml-sm-3"><a class="btn btn-outline-primary shadow-none d-none d-sm-block" href="CerrarSesion/">Cerrar Sesión</a></li>
+            </ul>
+          </nav>
+          <!-- Login & Signup Link end --> 
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header End --> 
+  
+  <!-- Content
+  ============================================= -->
+  <div id="content" class="py-4">
+    <div class="container">
+      <div class="row"> 
+        
+        <!-- Left Panel
+        ============================================= -->
+        <aside class="col-lg-3"> 
+
+          
+        </aside>
+        <!-- Left Panel End -->
+        
+        <!-- Middle Panel
+        ============================================= -->
+        <div class="col-lg-9">
+          
+          <h2 class="font-weight-400 mb-3">Transacciones</h2>
+          
+          <!-- Filter
+          ============================================= -->
+          <div class="row">
+            <div class="col mb-2">
+              <form id="filterTransactions" action="transactions_Cli/" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                  <!-- Date Range
+                  ========================= -->
+                  <div class="col-sm-6 col-md-5 form-group">
+                    <input id="dateRange" type="text" class="form-control" placeholder="Date Range">
+                    <span class="icon-inside"><i class="fas fa-calendar-alt"></i></span> 
+                  </div>
+                  <!-- All Filters Link
+                  ========================= -->
+                  <div class="col-auto d-flex align-items-center mr-auto form-group" data-toggle="collapse"> <a class="btn-link" data-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">Filtros<i class="fas fa-sliders-h text-3 ml-1"></i></a> </div>
+                  <!-- Statements Link
+                  ========================= -->
+                 
+                  
+                  <!-- All Filters collapse
+                  ================================ -->
+                  <div class="col-12 collapse mb-3" id="allFilters">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="allTransactions" name="allFilters" class="custom-control-input" checked>
+                      <label class="custom-control-label" for="allTransactions">Todas las Transacciones</label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="paymentsReceived" name="allFilters" class="custom-control-input">
+                      <label class="custom-control-label" for="paymentsReceived">Pagos Recibidos</label>
+                    </div>
+                   
+                   
+                
+                  </div>
+                  <!-- All Filters collapse End -->
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Filter End -->
+          
+          <!-- All Transactions
+          ============================================= -->
+          <div class="bg-light shadow-sm rounded py-4 mb-4">
+            <h3 class="text-5 font-weight-400 d-flex align-items-center px-4 mb-3">Todas las transacciones</h3>
+            <!-- Title
+            =============================== -->
+            <div class="transaction-title py-2 px-4">
+              <div class="row">
+                <table class="table table-dark table-striped">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>No. de Transaccion</th>
+                      <th>No. de Cuenta</th>
+                      <th>Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      
+                      {% for n in TRA_FECHA %}
+                      <td>
+                        {{n.TRA_FECHA}}
+                      </td>
+                          <td>
+                            {{n.NUMEROTRANSACCION}} 
+                          </td>
+                          <td>
+                           {{n.TRA_CUENTABANC}} 
+                          </td>
+                          <td>
+                            {{n.TRA_MONTO}} 
+                          </td>
+                        <tr></tr>
+                      {% endfor %}
+                      
+                     
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+            <!-- Title End -->
+           
+            <!-- Transaction Item Details Modal End -->
+            
+            <!-- Pagination
+            ============================================= -->
+            <ul class="pagination justify-content-center mt-4 mb-0">
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"> <a class="page-link" href="#">2 </a></li>
+              <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-right"></i></a> </li>
+            </ul>
+            <!-- Paginations end --> 
+            
+          </div>
+          <!-- All Transactions End --> 
+        </div>
+        <!-- Middle End --> 
+      </div>
+    </div>
+  </div>
+  <!-- Content end --> 
+  
+  <!-- Footer
+  ============================================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg d-lg-flex align-items-center">
+          <ul class="nav justify-content-center justify-content-lg-start text-3">
+            <li class="nav-item"> <a class="nav-link active" href="#">Acerca de Nosotros</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Soporte</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Ayuda</a></li>
+    
+          </ul>
+        </div>
+        <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
+          <ul class="social-icons justify-content-center">
+            <li class="social-icons-facebook"><a data-toggle="tooltip" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="social-icons-twitter"><a data-toggle="tooltip" href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li class="social-icons-google"><a data-toggle="tooltip" href="http://www.google.com/" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
+            <li class="social-icons-youtube"><a data-toggle="tooltip" href="http://www.youtube.com/" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copyright pt-3 pt-lg-2 mt-2">
+        <div class="row">
+          <div class="col-lg">
+            <p class="text-center text-lg-left mb-2 mb-lg-0">Copyright  2022<a href="#">BankApp</a>. All Rights Reserved.</p>
+          </div>
+          <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
+            <ul class="nav justify-content-center">
+              <li class="nav-item"> <a class="nav-link active" href="#">Seguridad</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Terminos</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Privacidad</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer end --> 
+  
+</div>
+<!-- Document Wrapper end --> 
+
+<!-- Back to Top
+============================================= --> 
+<a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+
+<!-- Script --> 
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script> 
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script> 
+<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script> 
+<script>
+$(function() {
+ 'use strict';
+ 
+ // Date Range Picker
+ $(function() {
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+    function cb(start, end) {
+        $('#dateRange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+    $('#dateRange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, cb);
+    cb(start, end);
+});
+});
+</script> 
+<script src="{% static 'js/theme.js' %}"></script>
+</body>
+</html>
